@@ -59,7 +59,7 @@ class USession implements USessionInterface
     {
         do {
             try {
-                $key = random_bytes($this->manager->getOpt(USessionManagerInterface::OPT_SESSION_KEY_LENGTH));
+                $key = random_bytes($this->manager->getOpt(USessionManagerInterface::OPT_UNIQUE_NAME_LENGTH));
             } catch (\Exception $e) {
                 throw new USessionException($e->getMessage(), USessionException::ERR_RANDOM_BYTES);
             }
