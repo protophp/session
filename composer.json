@@ -1,0 +1,28 @@
+{
+  "name": "usession/usession",
+  "description": "USession is easy, secure, scalable and event-based session management for Web and Inter-Server communications written with PHP.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arash Ghamkhari",
+      "email": "dev@ghamkhari.com"
+    }
+  ],
+  "require": {
+    "evenement/evenement": "^3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "autoload": {
+    "psr-4": {
+      "USession\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "USession\\Tests\\": "tests"
+    }
+  }
+}
