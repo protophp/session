@@ -36,6 +36,9 @@ class USession implements USessionInterface
         if ($this->destroyed === true)
             return null;
 
+        if (!$this->is($name))
+            return null;
+
         return $this->data[$name];
     }
 
@@ -71,7 +74,6 @@ class USession implements USessionInterface
         $this->manager->emit('clean', [$this]);
         return $this;
     }
-
 
     public function destroy(): void
     {

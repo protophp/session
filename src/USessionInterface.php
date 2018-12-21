@@ -27,7 +27,7 @@ interface USessionInterface
     /**
      * Get data
      * @param string $name
-     * @return mixed
+     * @return mixed NULL returned if the $name is not exists or session destroyed.
      */
     public function get(string $name);
 
