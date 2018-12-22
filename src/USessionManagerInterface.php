@@ -3,9 +3,20 @@
 namespace USession;
 
 use Evenement\EventEmitterInterface;
+use Opt\OptInterface;
 use USession\Exception\USessionException;
 
-interface USessionManagerInterface extends EventEmitterInterface
+/**
+ * USession Events:
+ * @event create [USession $session] The session created.
+ * @event recover [string $key, USession &$session] The session recovered by key.
+ * @event update [USession $session, string $name] The session's data updated.
+ * @event clean [USession $session] The session cleaned
+ * @event destroy [USession $session] The session destroyed.
+ *
+ * @package USession
+ */
+interface USessionManagerInterface extends EventEmitterInterface, OptInterface
 {
     /**
      * Length of session's key, default is 32
