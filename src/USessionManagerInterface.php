@@ -18,21 +18,6 @@ interface USessionManagerInterface extends EventEmitterInterface
     const OPT_UNIQUE_NAME_LENGTH = 1;
 
     /**
-     * Set options
-     * @param int $opt
-     * @param $value
-     * @return USessionManagerInterface
-     */
-    public function setOpt(int $opt, $value): USessionManagerInterface;
-
-    /**
-     * Get options
-     * @param int $opt
-     * @return mixed
-     */
-    public function getOpt(int $opt);
-
-    /**
      * Start session
      * @param string|null $key
      * @return USessionInterface

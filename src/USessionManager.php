@@ -3,31 +3,20 @@
 namespace USession;
 
 use Evenement\EventEmitter;
+use Opt\OptTrait;
 use USession\Exception\USessionException;
 
 class USessionManager extends EventEmitter implements USessionManagerInterface
 {
-    private $OPTS;
+    use OptTrait;
+
     private $SESSION;
 
     public function __construct()
     {
         // Default options
-        $this->OPTS = [
-            self::OPT_SESSION_KEY_LENGTH => 32,
-            self::OPT_UNIQUE_NAME_LENGTH => 16
-        ];
-    }
-
-    public function setOpt(int $opt, $value): USessionManagerInterface
-    {
-        $this->OPTS[$opt] = $value;
-        return $this;
-    }
-
-    public function getOpt(int $opt)
-    {
-        return $this->OPTS[$opt];
+        $this->setOpt(self::OPT_SESSION_KEY_LENGTH, 32);
+        $this->setOpt(self::OPT_UNIQUE_NAME_LENGTH, 16);
     }
 
     public function start(string $key = null): USessionInterface
