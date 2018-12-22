@@ -1,5 +1,7 @@
 <?php
 
+namespace USession\Tests;
+
 use USession\USession;
 use USession\USessionManager;
 
