@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=7.0",
     "evenement/evenement": "^3",
     "arashghamkhari/opt": "^1"
   },
