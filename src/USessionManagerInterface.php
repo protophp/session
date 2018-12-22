@@ -9,7 +9,7 @@ use USession\Exception\USessionException;
 /**
  * USession Events:
  * @event create [USession $session] The session created.
- * @event recover [string $key, USession &$session] The session recovered by key.
+ * @event recover [string $key, USessionManager $manager, USession &$session = null] The session recovered by key.
  * @event update [USession $session, string $name] The session's data updated.
  * @event clean [USession $session] The session cleaned
  * @event destroy [USession $session] The session destroyed.

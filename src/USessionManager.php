@@ -28,7 +28,7 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
 
             // Ask from storage handler for it.
             $session = null;
-            $this->emit('recover', [$key, &$session]);
+            $this->emit('recover', [$key, $this, &$session]);
 
             if (!($session instanceof USessionInterface))
                 throw new USessionException(null, USessionException::ERR_INVALID_SESSION_KEY);
