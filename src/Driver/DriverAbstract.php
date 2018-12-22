@@ -2,14 +2,11 @@
 
 namespace USession\Driver;
 
-use Opt\OptTrait;
 use USession\USessionInterface;
 use USession\USessionManagerInterface;
 
 abstract class DriverAbstract implements DriverInterface
 {
-    use OptTrait;
-
     final public function setup(USessionManagerInterface $manager)
     {
         $manager->on('create', [$this, 'onCreate']);
