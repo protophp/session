@@ -21,8 +21,11 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
 
     public function start(string $key = null): USessionInterface
     {
-        if (!isset($key))
-            return new USession($this, $this->getUniqueKey());
+        if (!isset($key)) {
+            $session = new USession($this, $this->getUniqueKey());
+            $this->emit('create', [$session]);
+            return $session;
+        }
 
         if (!isset($this->SESSION[$key])) {
 

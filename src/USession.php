@@ -20,7 +20,6 @@ class USession implements USessionInterface
         $this->key = $key;
         $this->hexKey = bin2hex($key);
         $this->manager = $sessionManager;
-        $this->manager->emit('create', [$this]);
     }
 
     public function set(string $name, $value): USessionInterface
