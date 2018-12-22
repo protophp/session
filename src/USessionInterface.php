@@ -63,5 +63,5 @@ interface USessionInterface
      * @event destroy
      * @return void
      */
-    public function destroy(): void;
+    public function destroy();
 }

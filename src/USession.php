@@ -76,7 +76,7 @@ class USession implements USessionInterface
         return $this;
     }
 
-    public function destroy(): void
+    public function destroy()
     {
         $this->clean();
         $this->destroyed = true;
