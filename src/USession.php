@@ -11,13 +11,14 @@ class USession implements USessionInterface
      */
     private $manager;
     private $key;
-    private $data;
-    private $destroyed;
+    private $hexKey;
+    private $data = [];
+    private $destroyed = false;
 
     public function __construct(USessionManagerInterface $sessionManager, string $key)
     {
         $this->key = $key;
-        $this->destroyed = false;
+        $this->hexKey = bin2hex($key);
         $this->manager = $sessionManager;
         $this->manager->emit('create', [$this]);
     }
@@ -54,6 +55,11 @@ class USession implements USessionInterface
     public function getKey(): string
     {
         return $this->key;
+    }
+
+    public function getHexKey(): string
+    {
+        return $this->hexKey;
     }
 
     public function getUniqueName(): string

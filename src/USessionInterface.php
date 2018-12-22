@@ -39,10 +39,16 @@ interface USessionInterface
     public function is(string $name): bool;
 
     /**
-     * Get session's key
+     * Get session's key in binary
      * @return string
      */
     public function getKey(): string;
+
+    /**
+     * Get session's key in hexadecimal
+     * @return string
+     */
+    public function getHexKey(): string;
 
     /**
      * Generate unique name in this session
