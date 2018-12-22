@@ -16,9 +16,10 @@ class USession implements USessionInterface
 
     public function __construct(USessionManagerInterface $sessionManager, string $key)
     {
-        $this->manager = $sessionManager;
         $this->key = $key;
         $this->destroyed = false;
+        $this->manager = $sessionManager;
+        $this->manager->emit('create', [$this]);
     }
 
     public function set(string $name, $value): USessionInterface
