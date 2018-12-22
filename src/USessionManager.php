@@ -32,6 +32,8 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
 
             if (!($session instanceof USessionInterface))
                 throw new USessionException(null, USessionException::ERR_INVALID_SESSION_KEY);
+
+            return $session;
         }
 
         return $this->SESSION[$key];
