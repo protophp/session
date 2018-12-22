@@ -10,11 +10,13 @@
     }
   ],
   "require": {
-    "evenement/evenement": "^3"
+    "evenement/evenement": "^3",
+    "arashghamkhari/opt": "^1"
   },
   "require-dev": {
     "phpunit/phpunit": "^7"
   },
+  "minimum-stability": "alpha",
   "autoload": {
     "psr-4": {
       "USession\\": "src"
