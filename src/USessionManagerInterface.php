@@ -14,6 +14,8 @@ use USession\Exception\USessionException;
  * @event clean [USession $session] The session cleaned
  * @event destroy [USession $session] The session destroyed.
  *
+ * @event duplicate-check [string $binaryKey] Check key is unique in all storage.
+ *
  * @package USession
  */
 interface USessionManagerInterface extends EventEmitterInterface, OptInterface

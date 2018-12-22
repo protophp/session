@@ -46,11 +46,16 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
     {
         do {
             try {
+                $isDuplicate = null;
                 $key = random_bytes($this->getOpt(self::OPT_SESSION_KEY_LENGTH));
+
+                // Ask for duplicate key from storage
+                $this->emit('duplicate-check', [$key, &$isDuplicate]);
+
             } catch (\Exception $e) {
                 throw new USessionException($e->getMessage(), USessionException::ERR_RANDOM_BYTES);
             }
-        } while (isset($this->SESSION[$key]));
+        } while (isset($this->SESSION[$key]) || $isDuplicate === true);
 
         return $key;
     }
