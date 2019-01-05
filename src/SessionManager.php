@@ -1,12 +1,12 @@
 <?php
 
-namespace USession;
+namespace Proto\Session;
 
 use Evenement\EventEmitter;
 use Opt\OptTrait;
-use USession\Exception\USessionException;
+use Proto\Session\Exception\SessionException;
 
-class USessionManager extends EventEmitter implements USessionManagerInterface
+class SessionManager extends EventEmitter implements SessionManagerInterface
 {
     use OptTrait;
 
@@ -19,10 +19,10 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
         $this->setOpt(self::OPT_UNIQUE_NAME_LENGTH, 16);
     }
 
-    public function start(string $key = null): USessionInterface
+    public function start(string $key = null): SessionInterface
     {
         if (!isset($key)) {
-            $session = new USession($this, $this->getUniqueKey());
+            $session = new Session($this, $this->getUniqueKey());
             $this->emit('create', [$session]);
             return $session;
         }
@@ -33,8 +33,8 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
             $session = null;
             $this->emit('recover', [$key, $this, &$session]);
 
-            if (!($session instanceof USessionInterface))
-                throw new USessionException(null, USessionException::ERR_INVALID_SESSION_KEY);
+            if (!($session instanceof SessionInterface))
+                throw new SessionException(null, SessionException::ERR_INVALID_SESSION_KEY);
 
             return $session;
         }
@@ -45,7 +45,7 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
     /**
      * Generate unique key
      * @return string
-     * @throws USessionException
+     * @throws SessionException
      */
     private function getUniqueKey(): string
     {
@@ -58,7 +58,7 @@ class USessionManager extends EventEmitter implements USessionManagerInterface
                 $this->emit('duplicate-check', [$key, &$isDuplicate]);
 
             } catch (\Exception $e) {
-                throw new USessionException($e->getMessage(), USessionException::ERR_RANDOM_BYTES);
+                throw new SessionException($e->getMessage(), SessionException::ERR_RANDOM_BYTES);
             }
         } while (isset($this->SESSION[$key]) || $isDuplicate === true);
 

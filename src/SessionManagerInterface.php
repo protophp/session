@@ -1,10 +1,10 @@
 <?php
 
-namespace USession;
+namespace Proto\Session;
 
 use Evenement\EventEmitterInterface;
 use Opt\OptInterface;
-use USession\Exception\USessionException;
+use Proto\Session\Exception\SessionException;
 
 /**
  * USession Events:
@@ -18,7 +18,7 @@ use USession\Exception\USessionException;
  *
  * @package USession
  */
-interface USessionManagerInterface extends EventEmitterInterface, OptInterface
+interface SessionManagerInterface extends EventEmitterInterface, OptInterface
 {
     /**
      * Length of session's key, default is 32
@@ -33,8 +33,8 @@ interface USessionManagerInterface extends EventEmitterInterface, OptInterface
     /**
      * Start session
      * @param string|null $key
-     * @return USessionInterface
-     * @throws USessionException
+     * @return SessionInterface
+     * @throws SessionException
      */
-    public function start(string $key = null): USessionInterface;
+    public function start(string $key = null): SessionInterface;
 }

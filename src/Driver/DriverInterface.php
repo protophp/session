@@ -1,18 +1,18 @@
 <?php
 
-namespace USession\Driver;
+namespace Proto\Session\Driver;
 
-use USession\USessionInterface;
-use USession\USessionManagerInterface;
+use Proto\Session\SessionInterface;
+use Proto\Session\SessionManagerInterface;
 
 interface DriverInterface
 {
     /**
      * Setup storage
-     * @param USessionManagerInterface $manager
+     * @param SessionManagerInterface $manager
      * @return mixed
      */
-    public function setup(USessionManagerInterface $manager);
+    public function setup(SessionManagerInterface $manager);
 
     /**
      * Check binary key is duplicate or not.
@@ -27,10 +27,10 @@ interface DriverInterface
 
     /**
      * Trigger on 'create' event
-     * @param USessionInterface $session
+     * @param SessionInterface $session
      * @return void
      */
-    public function onCreate(USessionInterface $session);
+    public function onCreate(SessionInterface $session);
 
     /**
      * Trigger on 'recover' event
@@ -39,31 +39,31 @@ interface DriverInterface
      * Performance note: If $session was instance of USessionInterface method must skipped.
      *
      * @param string $key
-     * @param USessionManagerInterface $manager
-     * @param USessionInterface|null $session
+     * @param SessionManagerInterface $manager
+     * @param SessionInterface|null $session
      * @return void
      */
-    public function onRecover(string $key, USessionManagerInterface $manager, USessionInterface &$session = null);
+    public function onRecover(string $key, SessionManagerInterface $manager, SessionInterface &$session = null);
 
     /**
      * Trigger on 'update' event
-     * @param USessionInterface $session
+     * @param SessionInterface $session
      * @param string $name
      * @return void
      */
-    public function onUpdate(USessionInterface $session, string $name);
+    public function onUpdate(SessionInterface $session, string $name);
 
     /**
      * Trigger on 'clean' event
-     * @param USessionInterface $session
+     * @param SessionInterface $session
      * @return void
      */
-    public function onClean(USessionInterface $session);
+    public function onClean(SessionInterface $session);
 
     /**
      * Trigger on 'destroy' event
-     * @param USessionInterface $session
+     * @param SessionInterface $session
      * @return void
      */
-    public function onDestroy(USessionInterface $session);
+    public function onDestroy(SessionInterface $session);
 }

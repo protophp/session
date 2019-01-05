@@ -1,28 +1,28 @@
 <?php
 
-namespace USession;
+namespace Proto\Session;
 
-use USession\Exception\USessionException;
+use Proto\Session\Exception\SessionException;
 
-interface USessionInterface
+interface SessionInterface
 {
     /**
      * Instance a new session
      *
      * @event create
-     * @param USessionManagerInterface $sessionManager
+     * @param SessionManagerInterface $sessionManager
      * @param string $key
      */
-    public function __construct(USessionManagerInterface $sessionManager, string $key);
+    public function __construct(SessionManagerInterface $sessionManager, string $key);
 
     /**
      * Set new data
      * @event update
      * @param string $name
      * @param mixed $value Set value null to remove it
-     * @return USessionInterface
+     * @return SessionInterface
      */
-    public function set(string $name, $value): USessionInterface;
+    public function set(string $name, $value): SessionInterface;
 
     /**
      * Get data
@@ -53,16 +53,16 @@ interface USessionInterface
     /**
      * Generate unique name in this session
      * @return string
-     * @throws USessionException
+     * @throws SessionException
      */
     public function getUniqueName(): string;
 
     /**
      * Clean session
      * @event clean
-     * @return USessionInterface
+     * @return SessionInterface
      */
-    public function clean(): USessionInterface;
+    public function clean(): SessionInterface;
 
     /**
      * Destroy session

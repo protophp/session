@@ -1,13 +1,13 @@
 <?php
 
-namespace USession;
+namespace Proto\Session;
 
-use USession\Exception\USessionException;
+use Proto\Session\Exception\SessionException;
 
-class USession implements USessionInterface
+class Session implements SessionInterface
 {
     /**
-     * @var USessionManagerInterface
+     * @var SessionManagerInterface
      */
     private $manager;
     private $key;
@@ -15,14 +15,14 @@ class USession implements USessionInterface
     private $data = [];
     private $destroyed = false;
 
-    public function __construct(USessionManagerInterface $sessionManager, string $key)
+    public function __construct(SessionManagerInterface $sessionManager, string $key)
     {
         $this->key = $key;
         $this->hexKey = bin2hex($key);
         $this->manager = $sessionManager;
     }
 
-    public function set(string $name, $value): USessionInterface
+    public function set(string $name, $value): SessionInterface
     {
         if ($this->destroyed === true)
             return $this;
@@ -65,16 +65,16 @@ class USession implements USessionInterface
     {
         do {
             try {
-                $key = random_bytes($this->manager->getOpt(USessionManagerInterface::OPT_UNIQUE_NAME_LENGTH));
+                $key = random_bytes($this->manager->getOpt(SessionManagerInterface::OPT_UNIQUE_NAME_LENGTH));
             } catch (\Exception $e) {
-                throw new USessionException($e->getMessage(), USessionException::ERR_RANDOM_BYTES);
+                throw new SessionException($e->getMessage(), SessionException::ERR_RANDOM_BYTES);
             }
         } while (isset($this->SESSION[$key]));
 
         return $key;
     }
 
-    public function clean(): USessionInterface
+    public function clean(): SessionInterface
     {
         $this->data = [];
         $this->manager->emit('clean', [$this]);

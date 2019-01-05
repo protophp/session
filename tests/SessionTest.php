@@ -1,22 +1,22 @@
 <?php
 
-namespace USession\Tests;
+namespace Proto\Session\Tests;
 
 use PHPUnit\Framework\TestCase;
-use USession\USessionManager;
+use Proto\Session\SessionManager;
 
-class USessionTest extends TestCase
+class SessionTest extends TestCase
 {
     /**
-     * @throws \USession\Exception\USessionException
+     * @throws \Proto\Session\Exception\SessionException
      */
     public function testUSession()
     {
-        $manager = new USessionManager();
+        $manager = new SessionManager();
         $session = $manager->start();
 
-        $this->assertEquals($manager->getOpt(USessionManager::OPT_SESSION_KEY_LENGTH), strlen($session->getKey()));
-        $this->assertEquals($manager->getOpt(USessionManager::OPT_UNIQUE_NAME_LENGTH), strlen($session->getUniqueName()));
+        $this->assertEquals($manager->getOpt(SessionManager::OPT_SESSION_KEY_LENGTH), strlen($session->getKey()));
+        $this->assertEquals($manager->getOpt(SessionManager::OPT_UNIQUE_NAME_LENGTH), strlen($session->getUniqueName()));
 
         // No exists data
         $this->assertFalse($session->is('sample'));
