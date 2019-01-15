@@ -24,6 +24,8 @@ class SessionManager extends EventEmitter implements SessionManagerInterface
         if (!isset($key)) {
             $session = new Session($this, $this->getUniqueKey());
             $this->emit('create', [$session]);
+
+            $this->SESSION[$session->getKey()] = $session;
             return $session;
         }
 
@@ -36,6 +38,7 @@ class SessionManager extends EventEmitter implements SessionManagerInterface
             if (!($session instanceof SessionInterface))
                 throw new SessionException(null, SessionException::ERR_INVALID_SESSION_KEY);
 
+            $this->SESSION[$session->getKey()] = $session;
             return $session;
         }
 

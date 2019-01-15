@@ -30,4 +30,16 @@ class SessionManagerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($session instanceof Session);
     }
 
+    /**
+     * @throws \Proto\Session\Exception\SessionException
+     */
+    public function testIs()
+    {
+        $manager = new SessionManager();
+
+        $session = $manager->start();
+        $this->assertFalse($manager->is('blah blah blah'));
+        $this->assertTrue($manager->is($session->getKey()));
+    }
+
 }
