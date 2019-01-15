@@ -37,4 +37,10 @@ interface SessionManagerInterface extends EventEmitterInterface, OptInterface
      * @throws SessionException
      */
     public function start(string $key = null): SessionInterface;
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function is(string $key): bool;
 }

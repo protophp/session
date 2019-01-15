@@ -42,6 +42,21 @@ class SessionManager extends EventEmitter implements SessionManagerInterface
         return $this->SESSION[$key];
     }
 
+    public function is(string $key): bool
+    {
+        if (isset($this->SESSION[$key]))
+            return true;
+
+        // Ask from storage handler for it.
+        $session = null;
+        $this->emit('recover', [$key, $this, &$session]);
+
+        if ($session !== null && $session instanceof SessionInterface)
+            return true;
+
+        return false;
+    }
+
     /**
      * Generate unique key
      * @return string
