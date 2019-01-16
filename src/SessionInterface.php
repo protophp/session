@@ -27,9 +27,10 @@ interface SessionInterface
     /**
      * Get data
      * @param string $name
-     * @return mixed NULL returned if the $name is not exists or session destroyed.
+     * @param null $default
+     * @return mixed $default returned if the $name is not exists or session destroyed.
      */
-    public function get(string $name);
+    public function get(string $name, $default = null);
 
     /**
      * Is data exists

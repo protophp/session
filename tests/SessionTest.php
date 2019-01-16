@@ -21,6 +21,7 @@ class SessionTest extends TestCase
         // No exists data
         $this->assertFalse($session->is('sample'));
         $this->assertNull($session->get('sample'));
+        $this->assertEquals(500, $session->get('sample', 500));     // default test
 
         // Add data
         $session->set('sample', 'TEST');

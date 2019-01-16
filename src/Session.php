@@ -32,13 +32,10 @@ class Session implements SessionInterface
         return $this;
     }
 
-    public function get(string $name)
+    public function get(string $name, $default = null)
     {
-        if ($this->destroyed === true)
-            return null;
-
-        if (!$this->is($name))
-            return null;
+        if ($this->destroyed === true || !$this->is($name))
+            return $default;
 
         return $this->data[$name];
     }
