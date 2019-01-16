@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2 (2019-01-16)
+
+* Feature: Add $default param to 'get' method of Session.
+
 ## v1.1.1 (2019-01-15)
 
 * Fix: some bugs fixed
